@@ -16,3 +16,14 @@ jobs:
       run: make docker-build
     - name: Run tests
       run: make docker-runtest-all
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint pylint-django
+    - name: Run pylint analysis
+      run: | 
+      pylint-fail-under --fail_under 2.0 --msg-template='{msg_id}:{line:3d},{column}: {obj}: {msg}' --load-plugins pylint_django mayan/apps/cabinets/ -rn
