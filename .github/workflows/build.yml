@@ -25,5 +25,4 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint pylint-django
     - name: Run pylint analysis
-      run: | 
-      pylint-fail-under --fail_under 2.0 --msg-template='{msg_id}:{line:3d},{column}: {obj}: {msg}' --load-plugins pylint_django mayan/apps/cabinets/ -rn
+      run: pylint-fail-under --fail_under 2.0 --msg-template='{msg_id}:{line:3d},{column} {obj} {msg}' --load-plugins pylint_django mayan/apps/cabinets/ -rn
